@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CursoIA - Plataforma de Educação a Distância</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://apis.google.com/js/api.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav">
+                <div class="logo">
+                    <h1>🎓 CursoIA</h1>
+                    <span class="tagline">Educação Inteligente</span>
+                </div>
+                
+                <div class="auth-section">
+                    <!-- Botão de Login -->
+                    <button id="loginBtn" class="login-btn" onclick="signInWithGoogle()">
+                        <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" class="google-icon">
+                        Entrar com Google
+                    </button>
+                    
+                    <!-- Área do usuário logado -->
+                    <div id="userInfo" class="user-info" style="display: none;">
+                        <div class="user-profile">
+                            <img id="userAvatar" src="" alt="Avatar" class="user-avatar">
+                            <div class="user-details">
+                                <span id="userName" class="user-name"></span>
+                                <span id="userEmail" class="user-email"></span>
+                            </div>
+                        </div>
+                        <button id="logoutBtn" class="logout-btn" onclick="signOutFromGoogle()">
+                            Sair
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Landing Page (não logado) -->
+    <main id="landingPage" class="landing-page">
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 class="hero-title">Transforme seu Aprendizado com IA</h1>
+                    <p class="hero-description">
+                        Plataforma de educação a distância que combina tecnologia avançada 
+                        com metodologias pedagógicas inovadoras para acelerar seu crescimento.
+                    </p>
+                    <div class="auth-required-notice">
+                        <p class="auth-notice-text">
+                            🔐 <strong>Login obrigatório:</strong> Para acessar a plataforma, você precisa fazer login com sua conta Google.
+                        </p>
+                    </div>
+                    <button class="cta-btn" onclick="signInWithGoogle()">
+                        🚀 Entrar com Google
+                    </button>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-illustration">
+                        <div class="floating-card">
+                            <h3>🧠 IA Personalizada</h3>
+                            <p>Conteúdo adaptado ao seu ritmo</p>
+                        </div>
+                        <div class="floating-card">
+                            <h3>📚 Cursos Práticos</h3>
+                            <p>Aprenda fazendo projetos reais</p>
+                        </div>
+                        <div class="floating-card">
+                            <h3>🎯 Resultados Rápidos</h3>
+                            <p>Veja seu progresso em tempo real</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <h2 class="section-title">Por que escolher o CursoIA?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3>Inteligência Artificial</h3>
+                        <p>Sistema inteligente que se adapta ao seu estilo de aprendizado e sugere conteúdos personalizados.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎓</div>
+                        <h3>Professores Especialistas</h3>
+                        <p>Aprenda com profissionais reconhecidos no mercado e especialistas em suas áreas.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Acesso Total</h3>
+                        <p>Estude quando e onde quiser. Plataforma otimizada para desktop, tablet e celular.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Certificados</h3>
+                        <p>Receba certificados reconhecidos pelo mercado ao concluir os cursos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👥</div>
+                        <h3>Comunidade Ativa</h3>
+                        <p>Conecte-se com outros estudantes, tire dúvidas e participe de projetos colaborativos.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Aprendizado Acelerado</h3>
+                        <p>Metodologias comprovadas para acelerar seu aprendizado e fixar conhecimento.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Dashboard (área logada) -->
+    <main id="dashboard" class="dashboard" style="display: none;">
+        <div class="container">
+            <!-- Barra lateral -->
+            <aside class="sidebar">
+                <nav class="sidebar-nav">
+                    <a href="#" class="nav-item active" data-section="overview">
+                        <span class="nav-icon">📊</span>
+                        <span class="nav-text">Visão Geral</span>
+                    </a>
+                    <a href="#" class="nav-item" data-section="courses">
+                        <span class="nav-icon">📚</span>
+                        <span class="nav-text">Meus Cursos</span>
+                    </a>
+                    <a href="#" class="nav-item" data-section="catalog">
+                        <span class="nav-icon">🔍</span>
+                        <span class="nav-text">Catálogo</span>
+                    </a>
+                    <a href="#" class="nav-item" data-section="progress">
+                        <span class="nav-icon">📈</span>
+                        <span class="nav-text">Progresso</span>
+                    </a>
+                    <a href="#" class="nav-item" data-section="certificates">
+                        <span class="nav-icon">🏆</span>
+                        <span class="nav-text">Certificados</span>
+                    </a>
+                    <a href="#" class="nav-item" data-section="community">
+                        <span class="nav-icon">👥</span>
+                        <span class="nav-text">Comunidade</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Conteúdo principal -->
+            <div class="main-content">
+                <!-- Seção: Visão Geral -->
+                <section id="overview" class="content-section active">
+                    <div class="welcome-header">
+                        <h2 id="welcomeMessage">Bem-vindo de volta!</h2>
+                        <p class="welcome-subtitle">Continue sua jornada de aprendizado</p>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📚</div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="totalCourses">0</span>
+                                <span class="stat-label">Cursos Inscritos</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="completedLessons">0</span>
+                                <span class="stat-label">Aulas Concluídas</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⏱️</div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="studyHours">0h</span>
+                                <span class="stat-label">Horas de Estudo</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🏆</div>
+                            <div class="stat-info">
+                                <span class="stat-number" id="certificates">0</span>
+                                <span class="stat-label">Certificados</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h3>Atividade Recente</h3>
+                        <div id="recentActivity" class="activity-list">
+                            <div class="activity-item">
+                                <div class="activity-icon">🎉</div>
+                                <div class="activity-content">
+                                    <p><strong>Bem-vindo ao CursoIA!</strong></p>
+                                    <span class="activity-time">Agora mesmo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção: Meus Cursos -->
+                <section id="courses" class="content-section">
+                    <h2>Meus Cursos</h2>
+                    <div id="enrolledCourses" class="courses-grid">
+                        <div class="empty-state">
+                            <div class="empty-icon">📚</div>
+                            <h3>Nenhum curso ainda</h3>
+                            <p>Explore nosso catálogo e comece sua jornada de aprendizado!</p>
+                            <button class="btn-primary" onclick="showSection('catalog')">
+                                Ver Catálogo
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Seção: Catálogo -->
+                <section id="catalog" class="content-section">
+                    <h2>Catálogo de Cursos</h2>
+                    <div class="catalog-filters">
+                        <button class="filter-btn active" data-category="all">Todos</button>
+                        <button class="filter-btn" data-category="ia">Inteligência Artificial</button>
+                        <button class="filter-btn" data-category="programacao">Programação</button>
+                        <button class="filter-btn" data-category="design">Design</button>
+                        <button class="filter-btn" data-category="marketing">Marketing</button>
+                    </div>
+                    <div id="courseCatalog" class="courses-grid">
+                        <!-- Cursos serão carregados dinamicamente -->
+                    </div>
+                </section>
+
+                <!-- Outras seções serão implementadas -->
+                <section id="progress" class="content-section">
+                    <h2>Seu Progresso</h2>
+                    <p>Acompanhe seu desenvolvimento em cada curso.</p>
+                </section>
+
+                <section id="certificates" class="content-section">
+                    <h2>Certificados</h2>
+                    <p>Seus certificados conquistados aparecerão aqui.</p>
+                </section>
+
+                <section id="community" class="content-section">
+                    <h2>Comunidade</h2>
+                    <p>Conecte-se com outros estudantes e professores.</p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="auth.js"></script>
+    <script src="education.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
