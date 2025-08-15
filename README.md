@@ -25,13 +25,17 @@ CursoIA/
 
 ## 🛠️ Como Usar
 
-### 1. Modo Demo (Imediato)
-1. Abra `index.html` no navegador
-2. Clique em "Entrar com Google" 
-3. O sistema entrará em modo demo automaticamente
-4. Explore todas as funcionalidades!
+### 1. Configuração Local (Desenvolvimento)
+1. Clone o repositório
+2. Configure o Client ID do Google:
+   ```javascript
+   // No console do navegador ou descomente no index.html:
+   window.GOOGLE_CLIENT_ID = 'SEU_CLIENT_ID_AQUI';
+   ```
+3. Abra `index.html` no navegador
+4. Faça login com Google
 
-### 2. Configuração Google OAuth (Produção)
+### 2. Configuração para Produção
 
 #### Passo 1: Criar Projeto no Google Cloud Console
 1. Acesse [Google Cloud Console](https://console.cloud.google.com/)
@@ -47,9 +51,23 @@ CursoIA/
 4. Copie o **Client ID** gerado
 
 #### Passo 3: Configurar na Aplicação
+
+**Opção 1 - Variável de Ambiente (Recomendado):**
+```bash
+# Crie arquivo .env na raiz do projeto
+GOOGLE_CLIENT_ID=seu_google_client_id_aqui
+```
+
+**Opção 2 - Configuração Manual:**
 ```javascript
-// No console do navegador ou no código:
+// No console do navegador:
 cursoIA.configureAuth('SEU_GOOGLE_CLIENT_ID_AQUI');
+```
+
+**Opção 3 - Variável Global:**
+```javascript
+// No index.html, descomente e configure:
+window.GOOGLE_CLIENT_ID = 'SEU_CLIENT_ID_AQUI';
 ```
 
 ## 🎯 Funcionalidades Principais

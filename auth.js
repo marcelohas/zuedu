@@ -1,7 +1,8 @@
 // Sistema de Autenticação Google OAuth 2.0 para CursoIA
 class GoogleAuth {
     constructor() {
-        this.clientId = '807880994234-a9pghcpmjn2vqhihmou22q2kti5f17q5.apps.googleusercontent.com';
+        // Carrega Client ID de variável de ambiente ou config
+        this.clientId = this.loadClientId();
         this.isSignedIn = false;
         this.currentUser = null;
         this.gapi = null;
@@ -9,16 +10,33 @@ class GoogleAuth {
         this.init();
     }
     
+    loadClientId() {
+        // Usa a configuração global se disponível
+        if (window.config && window.config.googleClientId) {
+            return window.config.googleClientId;
+        }
+        
+        // Fallback para outras fontes
+        return process.env.GOOGLE_CLIENT_ID || 
+               window.GOOGLE_CLIENT_ID || 
+               localStorage.getItem('google_client_id') || 
+               '';
+    }
+    
     async init() {
         try {
             // Carrega a biblioteca Google API
             await this.loadGoogleAPI();
             
-            // Inicializa o Google Auth automaticamente
-            await this.initGoogleAuth(this.clientId);
-            
-            console.log('🔑 Sistema de autenticação inicializado com sucesso');
-            console.log('✅ Google OAuth configurado e pronto para uso');
+            // Só inicializa se tiver Client ID
+            if (this.clientId) {
+                await this.initGoogleAuth(this.clientId);
+                console.log('🔑 Sistema de autenticação inicializado com sucesso');
+                console.log('✅ Google OAuth configurado e pronto para uso');
+            } else {
+                console.log('⚠️ Client ID não configurado. Configure antes de usar.');
+                console.log('💡 Use: cursoIA.configureAuth("SEU_CLIENT_ID") ou defina GOOGLE_CLIENT_ID');
+            }
             
         } catch (error) {
             console.error('❌ Erro ao inicializar autenticação:', error);
