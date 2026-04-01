@@ -306,16 +306,57 @@
             </div>
         </section>
 
-        <!-- 6. Call to Action -->
+        <!-- 6. Call to Action e Contato -->
         <section class="cta-section" id="contato">
             <div class="cta-overlay"></div>
-            <div class="container">
-                <div class="cta-content">
-                    <h2>Sua escola está preparada para o <span>futuro da educação?</span></h2>
-                    <p>Vamos construir juntos uma proposta personalizada para sua realidade escolar.</p>
-                    <div class="cta-buttons">
-                        <a href="mailto:contato@zuedu.com.br" class="btn btn-primary btn-large">Agendar conversa <i class="fas fa-calendar-alt"></i></a>
-                        <a href="#" class="btn btn-outline-light btn-large">Entrar em contato <i class="fab fa-whatsapp"></i></a>
+            <div class="container relative">
+                <div class="cta-grid">
+                    <div class="cta-content" style="text-align: left; margin: 0;">
+                        <h2>Sua escola está preparada para o <span>futuro da educação?</span></h2>
+                        <p>Diga-nos como podemos ajudar sua escola ou rede. Respondemos normalmente em 1–2 dias úteis.</p>
+                        <div class="cta-features mt-6">
+                            <ul>
+                                <li><i class="fas fa-check-circle"></i> <strong>Parcerias e formações</strong> para EI, EF e EM</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Recursos didáticos</strong> alinhados à BNCC</li>
+                                <li><i class="fas fa-check-circle"></i> <strong>Projetos com IA e Computação</strong> na educação básica</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="cta-form-wrapper">
+                        <form action="https://formsubmit.co/zueduia@gmail.com" method="POST" class="contact-form glass-form">
+                            <input type="hidden" name="_subject" value="Contato pelo site zuEDU">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="hidden" name="_captcha" value="true">
+                            <input type="hidden" name="_autoresponse" value="Recebemos sua mensagem. Obrigado pelo contato! Em breve retornaremos.">
+                            <input type="text" name="_honey" style="display:none;" tabindex="-1" autocomplete="off">
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>Nome</label>
+                                    <input type="text" name="nome" required placeholder="Seu nome" />
+                                </div>
+                                <div class="form-group">
+                                    <label>E-mail</label>
+                                    <input type="email" name="email" required placeholder="seuemail@exemplo.com" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Assunto</label>
+                                <input type="text" name="assunto" placeholder="Assunto da mensagem" />
+                            </div>
+                            <div class="form-group">
+                                <label>Mensagem</label>
+                                <textarea name="mensagem" rows="4" required placeholder="Como podemos ajudar?"></textarea>
+                            </div>
+                            <div class="form-group consent-group">
+                                <label class="consent-label">
+                                    <input type="checkbox" name="aceite" required />
+                                    <span>Autorizo o contato por e-mail.</span>
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-submit w-100">Enviar mensagem</button>
+                        </form>
                     </div>
                 </div>
             </div>

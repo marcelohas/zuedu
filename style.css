@@ -878,14 +878,13 @@ p { margin-bottom: 1rem; }
 }
 
 /* ==========================================================================
-   CTA Section
+   CTA Section & Contato
    ========================================================================== */
 .cta-section {
     position: relative;
     padding: 6rem 0;
     background-color: var(--primary-color);
     background-image: radial-gradient(circle at top right, #3b82f6, var(--primary-dark));
-    text-align: center;
     color: white;
     overflow: hidden;
 }
@@ -899,11 +898,13 @@ p { margin-bottom: 1rem; }
     background: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1.5" fill="%23ffffff" fill-opacity="0.1"/></svg>') repeat;
 }
 
-.cta-content {
+.cta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
     position: relative;
     z-index: 10;
-    max-width: 800px;
-    margin: 0 auto;
 }
 
 .cta-content h2 {
@@ -913,29 +914,110 @@ p { margin-bottom: 1rem; }
 }
 
 .cta-content h2 span {
-    color: #ffd166; /* Vibrant highlight color */
+    color: #ffd166;
 }
 
 .cta-content p {
     font-size: 1.25rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.5rem;
     opacity: 0.9;
 }
 
-.cta-buttons {
+.cta-features ul li {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cta-features ul li i {
+    color: #ffd166;
+}
+
+/* Contact Form */
+.glass-form {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
 
+.form-group {
+    margin-bottom: 1.25rem;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: rgba(255,255,255,0.9);
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+    width: 100%;
+    padding: 0.875rem 1.25rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.9);
+    color: var(--text-dark);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: white;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+}
+
+.consent-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.consent-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.8);
+    cursor: pointer;
+}
+
+.consent-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+.w-100 {
+    width: 100%;
+}
+
 .cta-section .btn-primary {
-    background-color: white;
-    color: var(--primary-dark);
+    background-color: #ffd166;
+    color: var(--text-dark);
+    border: none;
+    font-weight: 700;
 }
 
 .cta-section .btn-primary:hover {
-    background-color: #f8fafc;
-    color: var(--primary-color);
+    background-color: white;
     transform: translateY(-2px);
 }
 
@@ -1058,6 +1140,19 @@ p { margin-bottom: 1rem; }
         margin: 0 auto;
     }
     
+    .cta-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .cta-content {
+        text-align: center !important;
+    }
+
+    .cta-features ul li {
+        justify-content: center;
+    }
+    
     .footer-grid {
         grid-template-columns: 1fr 1fr;
     }
@@ -1133,5 +1228,9 @@ p { margin-bottom: 1rem; }
         left: 0;
         justify-content: center;
         margin: 0 1rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
     }
 }
